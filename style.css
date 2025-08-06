@@ -3,3 +3,32 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.input-field,
+.btn-container {
+  width: 200px;
+  margin: 0 auto;
+}
+
+button {
+  height: 50px;
+  width: 50px;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-row {
+  display: flex;
+}
+
+.btn-row > button:first-of-type {
+  flex: 1;
+}
+
+.work-btn {
+  background-color: rgb(255, 203, 71);
+  border: 1px solid gray;
+}
