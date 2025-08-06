@@ -13,6 +13,7 @@
 button {
   height: 50px;
   width: 50px;
+  font-size: 22px;
 }
 
 .btn-container {
@@ -31,4 +32,12 @@ button {
 .work-btn {
   background-color: rgb(255, 203, 71);
   border: 1px solid gray;
+}
+
+.input-field {
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+  height: 50px;
+  padding-bottom: 10px;
 }
