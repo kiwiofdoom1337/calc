@@ -1,7 +1,7 @@
 inputArea = document.querySelector(".input-field");
 
-let typeState = "start";
-let state = "num1";
+let startFresh = true;
+let inputNum = "num1";
 
 let num1 = "";
 let operator = "";
@@ -11,14 +11,14 @@ function operate() {}
 
 document.querySelectorAll(".input-btn").forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    if (typeState === "start") {
+    if (startFresh === true) {
       inputArea.textContent = e.target.textContent;
       num1 = "";
       num1 += e.target.textContent;
-      typeState = "";
+      startFresh = false;
     } else {
       inputArea.textContent += e.target.textContent;
-      if (state === "num1") {
+      if (inputNum === "num1") {
         num1 += e.target.textContent;
       } else {
         num2 += e.target.textContent;
@@ -29,7 +29,10 @@ document.querySelectorAll(".input-btn").forEach((btn) => {
 
 document.querySelectorAll(".work-btn").forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    typeState = "";
+    if (num1 && operator && num2) {
+      operate();
+    }
+    startFresh = false;
     operator = e.target.textContent;
     if (
       inputArea.textContent.includes("+") ||
@@ -43,26 +46,31 @@ document.querySelectorAll(".work-btn").forEach((btn) => {
       );
     } else {
       inputArea.textContent += ` ${e.target.textContent} `;
+      inputNum === "num1" ? (inputNum = "num2") : (inputNum = "num1");
     }
-
-    console.log(operator);
-
-    state === "num1" ? (state = "num2") : (state = "num1");
   });
 });
 
 document.querySelector(".clear-btn").addEventListener("click", () => {
   inputArea.textContent = "0";
-  state = "num1";
-  typeState = "start";
+  inputNum = "num1";
+  num1 = "0";
+  startFresh = true;
 });
 
-document.querySelector(".operate-btn").addEventListener("click", () => {
+function operate() {
+  if (!num2) {
+    inputArea.textContent = "ERROR";
+    startFresh = true;
+    num2 = "";
+    inputNum = "num1";
+    return;
+  }
   if (operator === "+") {
-    inputArea.textContent = +add(+num1, +num2);
+    inputArea.textContent = +add(+num1, +num2).toFixed(3);
   }
   if (operator === "−") {
-    inputArea.textContent = +subtract(+num1, +num2);
+    inputArea.textContent = +subtract(+num1, +num2).toFixed(3);
   }
   if (operator === "÷") {
     inputArea.textContent = +divide(+num1, +num2).toFixed(3);
@@ -72,9 +80,11 @@ document.querySelector(".operate-btn").addEventListener("click", () => {
   }
   num1 = inputArea.textContent;
   num2 = "";
-  state = "num1";
-  typeState = "start";
-});
+  inputNum = "num1";
+  startFresh = true;
+}
+
+document.querySelector(".operate-btn").addEventListener("click", operate);
 
 function add(a, b) {
   return a + b;
