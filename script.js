@@ -16,7 +16,19 @@ document.querySelectorAll(".input-btn").forEach((btn) => {
       if (inputNum === "num2" && num2.includes(".")) {
         return;
       }
+      if (inputNum === "num1" && num1 === "") {
+        inputArea.textContent = "0.";
+        num1 = "0.";
+        startFresh = false;
+        return;
+      }
+      if (inputNum === "num2" && num2 === "") {
+        inputArea.textContent += "0.";
+        num2 = "0.";
+        return;
+      }
     }
+
     if (startFresh === true) {
       inputArea.textContent = e.target.textContent;
       num1 = "";
@@ -33,8 +45,38 @@ document.querySelectorAll(".input-btn").forEach((btn) => {
   });
 });
 
+document.querySelectorAll(".work-btn").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    if (num1 && operator && num2) {
+      operate();
+    }
+    if (
+      inputArea.textContent === "IMPOSSIBLE" ||
+      inputArea.textContent === "ERROR"
+    ) {
+      return;
+    }
+    startFresh = false;
+    operator = e.target.textContent;
+    if (
+      inputArea.textContent.includes("+") ||
+      inputArea.textContent.includes("−") ||
+      inputArea.textContent.includes("×") ||
+      inputArea.textContent.includes("÷")
+    ) {
+      inputArea.textContent = inputArea.textContent.replace(
+        /[+−×÷]/i,
+        operator
+      );
+    } else {
+      inputArea.textContent += ` ${e.target.textContent} `;
+      inputNum === "num1" ? (inputNum = "num2") : (inputNum = "num1");
+    }
+  });
+});
+
 document.addEventListener("keydown", (e) => {
-  let checkForInput = "1234567890";
+  let checkForInput = "1234567890.";
   if (!checkForInput.includes(e.key)) {
     return;
   }
@@ -43,6 +85,17 @@ document.addEventListener("keydown", (e) => {
       return;
     }
     if (inputNum === "num2" && num2.includes(".")) {
+      return;
+    }
+    if (inputNum === "num1" && num1 === "") {
+      inputArea.textContent = "0.";
+      num1 = "0.";
+      startFresh = false;
+      return;
+    }
+    if (inputNum === "num2" && num2 === "") {
+      inputArea.textContent += "0.";
+      num2 = "0.";
       return;
     }
   }
@@ -108,36 +161,6 @@ document.addEventListener("keydown", (e) => {
 
     inputNum === "num1" ? (inputNum = "num2") : (inputNum = "num1");
   }
-});
-
-document.querySelectorAll(".work-btn").forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    if (num1 && operator && num2) {
-      operate();
-    }
-    if (
-      inputArea.textContent === "IMPOSSIBLE" ||
-      inputArea.textContent === "ERROR"
-    ) {
-      return;
-    }
-    startFresh = false;
-    operator = e.target.textContent;
-    if (
-      inputArea.textContent.includes("+") ||
-      inputArea.textContent.includes("−") ||
-      inputArea.textContent.includes("×") ||
-      inputArea.textContent.includes("÷")
-    ) {
-      inputArea.textContent = inputArea.textContent.replace(
-        /[+−×÷]/i,
-        operator
-      );
-    } else {
-      inputArea.textContent += ` ${e.target.textContent} `;
-      inputNum === "num1" ? (inputNum = "num2") : (inputNum = "num1");
-    }
-  });
 });
 
 document.querySelector(".clear-btn").addEventListener("click", () => {
