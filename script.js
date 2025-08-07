@@ -11,6 +11,14 @@ function operate() {}
 
 document.querySelectorAll(".input-btn").forEach((btn) => {
   btn.addEventListener("click", (e) => {
+    if (e.target.textContent === ".") {
+      if (inputNum === "num1" && num1.includes(".")) {
+        return;
+      }
+      if (inputNum === "num2" && num2.includes(".")) {
+        return;
+      }
+    }
     if (startFresh === true) {
       inputArea.textContent = e.target.textContent;
       num1 = "";
@@ -31,6 +39,9 @@ document.querySelectorAll(".work-btn").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     if (num1 && operator && num2) {
       operate();
+    }
+    if (inputArea.textContent === "IMPOSSIBLE") {
+      return;
     }
     startFresh = false;
     operator = e.target.textContent;
@@ -73,6 +84,15 @@ function operate() {
     inputArea.textContent = +subtract(+num1, +num2).toFixed(3);
   }
   if (operator === "÷") {
+    if (num2 === "0") {
+      inputArea.textContent = "IMPOSSIBLE";
+      startFresh = true;
+      num1 = "";
+      num2 = "";
+      operator = "";
+      inputNum = "num1";
+      return;
+    }
     inputArea.textContent = +divide(+num1, +num2).toFixed(3);
   }
   if (operator === "×") {
@@ -85,6 +105,26 @@ function operate() {
 }
 
 document.querySelector(".operate-btn").addEventListener("click", operate);
+
+document.querySelector(".backspace-btn").addEventListener("click", () => {
+  if (inputArea.textContent.slice(-3) === ` ${operator} `) {
+    inputArea.textContent = inputArea.textContent.slice(0, -3);
+    inputNum = "num1";
+    operator = "";
+    return;
+  }
+  inputArea.textContent = inputArea.textContent.slice(0, -1);
+  if (inputArea.textContent === "") {
+    inputArea.textContent = "0";
+    startFresh = true;
+  }
+  if (inputNum === "num2") {
+    num2 = num2.slice(0, -1);
+  }
+  if (inputNum === "num1") {
+    num1 = num1.slice(0, -1);
+  }
+});
 
 function add(a, b) {
   return a + b;
