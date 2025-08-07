@@ -47,3 +47,7 @@ button:hover {
   filter: brightness(80%);
   cursor: pointer;
 }
+
+button:active {
+  filter: brightness(60%);
+}
