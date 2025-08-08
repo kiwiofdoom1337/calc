@@ -61,14 +61,14 @@ document.querySelectorAll(".work-btn").forEach((btn) => {
     startFresh = false;
     operator = e.target.textContent;
     if (
-      inputArea.textContent.includes("+") ||
-      inputArea.textContent.includes("−") ||
-      inputArea.textContent.includes("×") ||
-      inputArea.textContent.includes("÷")
+      inputArea.innerHTML.includes("&nbsp;+&nbsp;") ||
+      inputArea.innerHTML.includes("&nbsp;−&nbsp;") ||
+      inputArea.innerHTML.includes("&nbsp;×&nbsp;") ||
+      inputArea.innerHTML.includes("&nbsp;÷&nbsp;")
     ) {
-      inputArea.textContent = inputArea.textContent.replace(
-        /[+−×÷]/i,
-        operator
+      inputArea.innerHTML = inputArea.innerHTML.replace(
+        /(&nbsp;×&nbsp;|&nbsp;\+&nbsp;|&nbsp;−&nbsp;|&nbsp;÷&nbsp;)/i,
+        `&nbsp;${operator}&nbsp;`
       );
     } else {
       inputArea.innerHTML += `&nbsp;${e.target.textContent}&nbsp;`;
@@ -78,6 +78,7 @@ document.querySelectorAll(".work-btn").forEach((btn) => {
 });
 
 document.addEventListener("keydown", (e) => {
+  e.preventDefault();
   let checkForInput = "1234567890.";
   if (!checkForInput.includes(e.key)) {
     return;
@@ -117,6 +118,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 document.addEventListener("keydown", (e) => {
+  e.preventDefault();
   if (
     inputArea.textContent === "IMPOSSIBLE" ||
     inputArea.textContent === "ERROR"
@@ -144,12 +146,15 @@ document.addEventListener("keydown", (e) => {
     operator = e.key;
   }
   if (
-    inputArea.textContent.includes("+") ||
-    inputArea.textContent.includes("−") ||
-    inputArea.textContent.includes("×") ||
-    inputArea.textContent.includes("÷")
+    inputArea.innerHTML.includes("&nbsp;+&nbsp;") ||
+    inputArea.innerHTML.includes("&nbsp;−&nbsp;") ||
+    inputArea.innerHTML.includes("&nbsp;×&nbsp;") ||
+    inputArea.innerHTML.includes("&nbsp;÷&nbsp;")
   ) {
-    inputArea.textContent = inputArea.textContent.replace(/[+−×÷]/i, operator);
+    inputArea.innerHTML = inputArea.innerHTML.replace(
+      /(&nbsp;×&nbsp;|&nbsp;\+&nbsp;|&nbsp;−&nbsp;|&nbsp;÷&nbsp;)/i,
+      `&nbsp;${operator}&nbsp;`
+    );
   } else {
     if (e.key === "*") {
       inputArea.innerHTML += `&nbsp;×&nbsp;`;
@@ -174,6 +179,7 @@ document.querySelector(".clear-btn").addEventListener("click", () => {
 
 document.querySelector(".operate-btn").addEventListener("click", operate);
 document.addEventListener("keydown", (e) => {
+  e.preventDefault();
   inputValid = ["=", "Enter"];
   if (!inputValid.includes(e.key)) {
     return;
@@ -183,6 +189,7 @@ document.addEventListener("keydown", (e) => {
 
 document.querySelector(".backspace-btn").addEventListener("click", backspace);
 document.addEventListener("keydown", (e) => {
+  e.preventDefault();
   inputValid = "Backspace";
   if (e.key !== inputValid) {
     return;
@@ -191,7 +198,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 function backspace() {
-  if (inputArea.textContent.slice(-3) === ` ${operator} `) {
+  if (inputArea.innerHTML.slice(-13) === `&nbsp;${operator}&nbsp;`) {
     inputArea.textContent = inputArea.textContent.slice(0, -3);
     inputNum = "num1";
     operator = "";
