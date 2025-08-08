@@ -5,7 +5,7 @@ resultHistory = document.querySelector(".calc-history");
 let startFresh = true;
 let inputNum = "num1";
 
-let num1 = "";
+let num1 = "0";
 let operator = "";
 let num2 = "";
 
