@@ -182,7 +182,7 @@ document.addEventListener("keydown", (e) => {
 document.querySelector(".backspace-btn").addEventListener("click", backspace);
 document.addEventListener("keydown", (e) => {
   inputValid = "Backspace";
-  if (!inputValid.includes(e.key)) {
+  if (e.key !== inputValid) {
     return;
   }
   backspace();
