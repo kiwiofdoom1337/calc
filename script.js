@@ -71,7 +71,7 @@ document.querySelectorAll(".work-btn").forEach((btn) => {
         operator
       );
     } else {
-      inputArea.textContent += ` ${e.target.textContent} `;
+      inputArea.textContent += `&nbsp;${e.target.textContent}&nbsp;`;
       inputNum === "num1" ? (inputNum = "num2") : (inputNum = "num1");
     }
   });
@@ -152,13 +152,13 @@ document.addEventListener("keydown", (e) => {
     inputArea.textContent = inputArea.textContent.replace(/[+−×÷]/i, operator);
   } else {
     if (e.key === "*") {
-      inputArea.textContent += ` × `;
+      inputArea.innerHTML += `&nbsp;×&nbsp;`;
     } else if (e.key === "/") {
-      inputArea.textContent += ` ÷ `;
+      inputArea.innerHTML += `&nbsp;÷&nbsp;`;
     } else if (e.key === "-") {
-      inputArea.textContent += ` − `;
+      inputArea.innerHTML += `&nbsp;−&nbsp;`;
     } else {
-      inputArea.textContent += ` ${e.key} `;
+      inputArea.innerHTML += `&nbsp;${e.key}&nbsp;`;
     }
 
     inputNum === "num1" ? (inputNum = "num2") : (inputNum = "num1");
@@ -240,7 +240,7 @@ function operate() {
   if (operator === "×") {
     inputArea.textContent = +multiply(+num1, +num2).toFixed(3);
   }
-  resultArea.textContent = `${num1} ${operator} ${num2} = ${inputArea.textContent}`;
+  resultArea.innerHTML = `${num1}&nbsp;${operator}&nbsp;${num2}&nbsp;=&nbsp;${inputArea.textContent}`;
 
   let resultRecord = document.createElement("div");
   resultRecord.style.cssText =
