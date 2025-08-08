@@ -7,41 +7,44 @@
     <title>Calculator</title>
   </head>
   <body>
-    <div class="calc">
-      <div>
-        <div class="result-field"></div>
-        <div class="input-field">0</div>
+    <div class="calc-container">
+      <div class="calc">
+        <div>
+          <div class="result-field"></div>
+          <div class="input-field">0</div>
+        </div>
+        <div class="btn-container">
+          <div class="btn-row">
+            <button class="clear-btn">C</button>
+            <button class="backspace-btn">CE</button>
+            <button class="work-btn">÷</button>
+          </div>
+          <div class="btn-row">
+            <button class="input-btn">7</button
+            ><button class="input-btn">8</button
+            ><button class="input-btn">9</button
+            ><button class="work-btn">×</button>
+          </div>
+          <div class="btn-row">
+            <button class="input-btn">4</button
+            ><button class="input-btn">5</button
+            ><button class="input-btn">6</button
+            ><button class="work-btn">−</button>
+          </div>
+          <div class="btn-row">
+            <button class="input-btn">1</button
+            ><button class="input-btn">2</button
+            ><button class="input-btn">3</button
+            ><button class="work-btn">+</button>
+          </div>
+          <div class="btn-row">
+            <button class="input-btn">0</button
+            ><button class="input-btn">.</button
+            ><button class="operate-btn">=</button>
+          </div>
+        </div>
       </div>
-      <div class="btn-container">
-        <div class="btn-row">
-          <button class="clear-btn">C</button>
-          <button class="backspace-btn">CE</button>
-          <button class="work-btn">÷</button>
-        </div>
-        <div class="btn-row">
-          <button class="input-btn">7</button
-          ><button class="input-btn">8</button
-          ><button class="input-btn">9</button
-          ><button class="work-btn">×</button>
-        </div>
-        <div class="btn-row">
-          <button class="input-btn">4</button
-          ><button class="input-btn">5</button
-          ><button class="input-btn">6</button
-          ><button class="work-btn">−</button>
-        </div>
-        <div class="btn-row">
-          <button class="input-btn">1</button
-          ><button class="input-btn">2</button
-          ><button class="input-btn">3</button
-          ><button class="work-btn">+</button>
-        </div>
-        <div class="btn-row">
-          <button class="input-btn">0</button
-          ><button class="input-btn">.</button
-          ><button class="operate-btn">=</button>
-        </div>
-      </div>
+      <div class="calc-history"></div>
     </div>
     <script src="script.js"></script>
   </body>

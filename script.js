@@ -1,5 +1,6 @@
 inputArea = document.querySelector(".input-field");
 resultArea = document.querySelector(".result-field");
+resultHistory = document.querySelector(".calc-history");
 
 let startFresh = true;
 let inputNum = "num1";
@@ -240,6 +241,19 @@ function operate() {
     inputArea.textContent = +multiply(+num1, +num2).toFixed(3);
   }
   resultArea.textContent = `${num1} ${operator} ${num2} = ${inputArea.textContent}`;
+
+  let resultRecord = document.createElement("div");
+  resultRecord.style.cssText =
+    "height: 30px; display: flex; color: rgba(177, 177, 177, 1); justify-content: flex-end; align-items: flex-end; padding-right: 5px; padding-bottom: 2px; background-color: rgb(240, 240, 240);  border-bottom: 1px solid rgba(207, 207, 207, 1);";
+  resultRecord.textContent = resultArea.textContent;
+  resultRecord.addEventListener("mouseover", () => {
+    resultRecord.classList.toggle("darken");
+  });
+  resultRecord.addEventListener("mouseout", () => {
+    resultRecord.classList.toggle("darken");
+  });
+  resultHistory.appendChild(resultRecord);
+
   num1 = inputArea.textContent;
   num2 = "";
   inputNum = "num1";
