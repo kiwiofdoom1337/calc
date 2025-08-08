@@ -4,8 +4,7 @@
   box-sizing: border-box;
 }
 
-.input-field,
-.btn-container {
+.calc {
   width: 200px;
   margin: 0 auto;
 }
@@ -14,6 +13,10 @@ button {
   height: 50px;
   width: 50px;
   font-size: 22px;
+  border-radius: 0;
+  border: 1px solid gray;
+  border-collapse: collapse;
+  margin: -1px 0 0 -1px;
 }
 
 .btn-container {
@@ -31,7 +34,6 @@ button {
 
 .work-btn {
   background-color: rgb(255, 203, 71);
-  border: 1px solid gray;
 }
 
 .input-field {
@@ -41,6 +43,25 @@ button {
   height: 50px;
   padding-bottom: 10px;
   font-size: 30px;
+  border-right: 1px solid gray;
+  border-left: 1px solid gray;
+  margin: -1px 0 0 -1px;
+  padding-right: 5px;
+}
+
+.result-field {
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+  height: 30px;
+  font-size: 15px;
+  color: rgb(100, 98, 98);
+  border-right: 1px solid gray;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  border-top: 1px solid gray;
+  margin: 30px 0 0 -1px;
+  padding-right: 5px;
 }
 
 button:hover {

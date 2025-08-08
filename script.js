@@ -1,4 +1,5 @@
 inputArea = document.querySelector(".input-field");
+resultArea = document.querySelector(".result-field");
 
 let startFresh = true;
 let inputNum = "num1";
@@ -238,6 +239,7 @@ function operate() {
   if (operator === "×") {
     inputArea.textContent = +multiply(+num1, +num2).toFixed(3);
   }
+  resultArea.textContent = `${num1} ${operator} ${num2} = ${inputArea.textContent}`;
   num1 = inputArea.textContent;
   num2 = "";
   inputNum = "num1";
