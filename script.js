@@ -71,7 +71,7 @@ document.querySelectorAll(".work-btn").forEach((btn) => {
         operator
       );
     } else {
-      inputArea.textContent += `&nbsp;${e.target.textContent}&nbsp;`;
+      inputArea.innerHTML += `&nbsp;${e.target.textContent}&nbsp;`;
       inputNum === "num1" ? (inputNum = "num2") : (inputNum = "num1");
     }
   });
